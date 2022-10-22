@@ -62,23 +62,18 @@ impl Patcher {
             self.records.push(rec);
         }
 
-        let last_offset: u32;
-        match &self.records[self.records.len() - 1] {
+        let last_offset: u32 = match &self.records[self.records.len() - 1] {
             Record::Standard {
                 offset,
                 size,
                 data: _,
-            } => {
-                last_offset = *offset + (*size as u32);
-            }
+            } => *offset + (*size as u32),
             Record::RLE {
                 offset,
                 length,
                 value: _,
-            } => {
-                last_offset = *offset + (*length as u32);
-            }
-        }
+            } => *offset + (*length as u32),
+        };
 
         if (last_offset + 1) as usize > self.rom_data.len() {
             self.rom_data
