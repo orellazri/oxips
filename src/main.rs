@@ -4,7 +4,11 @@ use clap::Parser;
 
 use crate::patcher::Patcher;
 
-#[derive(Parser, Debug)]
+#[derive(Parser)]
+#[command(name = "oxips")]
+#[command(author = "Orel Lazri")]
+#[command(version = "0.1")]
+#[command(about = "IPS patching tool", long_about = None)]
 struct Args {
     #[arg(short, long)]
     rom: String,
