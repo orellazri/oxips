@@ -1,6 +1,6 @@
 # 🪛 oxips
 
-oxips is a simple IPS binary patching tool written in Rust. This is useful, for example, when patching video game roms.
+oxips is a simple IPS binary patching tool written in Rust. It is useful, for example, when patching video game roms.
 
 ## Build
 
