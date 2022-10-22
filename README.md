@@ -1,5 +1,7 @@
 # 🪛 oxips
 
+[![Rust](https://github.com/orellazri/oxips/actions/workflows/rust.yml/badge.svg)](https://github.com/orellazri/oxips/actions/workflows/rust.yml)
+
 oxips is a simple IPS binary patching tool written in Rust. It is useful, for example, when patching video game roms.
 
 ## Build
