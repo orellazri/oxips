@@ -3,7 +3,6 @@ use std::fs;
 const PATCH_START: [u8; 5] = [0x50, 0x41, 0x54, 0x43, 0x48];
 const PATCH_END: [u8; 3] = [0x45, 0x4f, 0x46];
 
-#[derive(Debug)]
 pub enum Record {
     Standard {
         offset: u32,
