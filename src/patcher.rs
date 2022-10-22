@@ -33,6 +33,7 @@ impl Patcher {
 
         self.read_records();
 
+        // Patch the rom data with the processed records
         for record in &self.records {
             match record {
                 Record::Standard { offset, size, data } => {
@@ -61,6 +62,7 @@ impl Patcher {
             self.records.push(rec);
         }
 
+        // Extend rom data vector if needed
         let last_offset: u32 = match &self.records[self.records.len() - 1] {
             Record::Standard {
                 offset,
@@ -103,6 +105,7 @@ impl Patcher {
             return None;
         }
 
+        // Read offset
         let mut offset: u32 = (self.patch_data[self.patch_pointer] as u32) << 16;
         self.patch_pointer += 1;
         offset |= (self.patch_data[self.patch_pointer] as u32) << 8;
@@ -110,11 +113,14 @@ impl Patcher {
         offset |= self.patch_data[self.patch_pointer] as u32;
         self.patch_pointer += 1;
 
+        // Read site
         let mut size: u16 = (self.patch_data[self.patch_pointer] as u16) << 8;
         self.patch_pointer += 1;
         size |= self.patch_data[self.patch_pointer] as u16;
         self.patch_pointer += 1;
 
+        // Read data (if this is a standard record) or a value (if this record contains run-length encoding)
+        // and return the record
         let is_rle = size == 0;
         if is_rle {
             let mut length: u16 = (self.patch_data[self.patch_pointer] as u16) << 8;
